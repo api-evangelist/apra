@@ -1,0 +1,99 @@
+generated: '2026-07-25'
+method: searched
+source: live probes of every APRA host in apis.yml
+note: >-
+  APRA publishes exactly one /.well-known/ document — an RFC 9116 security.txt on
+  the corporate site. The APRA Connect hosts sit behind an F5 WAF that answers every
+  path with an HTTP 200 "Request Rejected" HTML page, so a 200 from connect.apra.gov.au
+  is NOT a discovery document; each of those probes is recorded below as a WAF false
+  positive with parsed:false. api.apra.gov.au has an A record (124.47.155.12) but
+  TCP/443 is filtered — nothing answers.
+hosts:
+- host: https://www.apra.gov.au
+  reachable: true
+- host: https://connect.apra.gov.au
+  reachable: true
+  note: F5 BIG-IP WAF rejects anonymous requests with a 200 HTML page.
+- host: https://connect-test.apra.gov.au
+  reachable: true
+  note: APRA Connect test environment; same WAF/login wall.
+- host: https://api.apra.gov.au
+  reachable: false
+  note: DNS A record 124.47.155.12 resolves, but TCP/443 and TCP/80 both time out.
+    No service is published on this name as of 2026-07-25.
+documents:
+- path: /.well-known/security.txt
+  host: https://www.apra.gov.au
+  status: 200
+  parsed: true
+  format: RFC 9116
+  file: apra-security.txt
+- path: /.well-known/openid-configuration
+  host: https://www.apra.gov.au
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  host: https://www.apra.gov.au
+  status: 404
+- path: /.well-known/api-catalog
+  host: https://www.apra.gov.au
+  status: 404
+- path: /.well-known/ai-plugin.json
+  host: https://www.apra.gov.au
+  status: 404
+- path: /llms.txt
+  host: https://www.apra.gov.au
+  status: 404
+- path: /robots.txt
+  host: https://www.apra.gov.au
+  status: 200
+  parsed: true
+  note: Stock Drupal robots.txt. No AI/agent directives, no sitemap directive.
+- path: /sitemap.xml
+  host: https://www.apra.gov.au
+  status: 200
+  parsed: true
+  note: Simple XML Sitemap (Drupal) index, 2 pages, 3,451 URLs.
+- path: /.well-known/security.txt
+  host: https://connect.apra.gov.au
+  status: 200
+  parsed: false
+  note: FALSE POSITIVE — F5 WAF "Request Rejected" HTML.
+- path: /.well-known/openid-configuration
+  host: https://connect.apra.gov.au
+  status: 200
+  parsed: false
+  note: FALSE POSITIVE — F5 WAF "Request Rejected" HTML, not OIDC metadata.
+- path: /.well-known/oauth-authorization-server
+  host: https://connect.apra.gov.au
+  status: 200
+  parsed: false
+  note: FALSE POSITIVE — F5 WAF "Request Rejected" HTML.
+- path: /.well-known/oauth-protected-resource
+  host: https://connect.apra.gov.au
+  status: 200
+  parsed: false
+  note: FALSE POSITIVE — F5 WAF "Request Rejected" HTML.
+- path: /.well-known/api-catalog
+  host: https://connect.apra.gov.au
+  status: 200
+  parsed: false
+  note: FALSE POSITIVE — F5 WAF "Request Rejected" HTML.
+contract_discovery:
+  openapi: none
+  graphql: none
+  mcp: none
+  asyncapi: none
+  probes:
+  - {url: 'https://www.apra.gov.au/openapi.json', status: 404}
+  - {url: 'https://www.apra.gov.au/openapi.yaml', status: 404}
+  - {url: 'https://www.apra.gov.au/api-docs', status: 404}
+  - {url: 'https://connect.apra.gov.au/openapi.json', status: 200, parsed: false, note: WAF HTML}
+  - {url: 'https://connect.apra.gov.au/graphql', status: 200, parsed: false, note: WAF HTML}
+  - {url: 'https://api.apra.gov.au/openapi.json', status: 000, note: connection timed out}
+  - {url: 'https://api.apra.gov.au/', status: 000, note: connection timed out (TCP/443 filtered)}
+  conclusion: >-
+    No OpenAPI, Swagger, GraphQL, gRPC or AsyncAPI contract is published on any APRA
+    host. APRA's own technical specifications page states the "API technical
+    specification" is "to be provided when this functionality is available". The
+    machine-readable contract APRA does publish is the APRA Connect reporting
+    taxonomy (XSD + XBRL) — catalogued in data-model/apra-reporting-taxonomy.yml.

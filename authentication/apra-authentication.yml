@@ -1,0 +1,78 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications
+docs:
+- https://www.apra.gov.au/apra-portals/apra-connect/accessing-apra-connect
+- https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications
+summary:
+  types: []
+  api_auth: none
+  note: >-
+    There are no OpenAPI securitySchemes to derive from because APRA publishes no API.
+    APRA's own technical specifications page lists the "API technical specification"
+    as "to be provided when this functionality is available". The authentication model
+    below is the documented, human, browser-based authentication for APRA Connect —
+    the only integration surface APRA operates — and is recorded so the auth posture
+    is legible, not to imply an API auth scheme exists.
+api_authentication:
+  api_key: false
+  http_basic: false
+  http_bearer: false
+  oauth2: false
+  openid_connect: false
+  mutual_tls: false
+  evidence:
+  - https://www.apra.gov.au/.well-known/openid-configuration returned 404
+  - https://www.apra.gov.au/.well-known/oauth-authorization-server returned 404
+  - connect.apra.gov.au /.well-known/* return F5 WAF "Request Rejected" HTML, not
+    discovery metadata (see well-known/apra-well-known.yml)
+portal_authentication:
+  model: federated human SSO via the Australian Government Digital ID System
+  identity_provider:
+    name: myID
+    role: identity provider (Digital ID)
+    strength_required: Standard
+    url: https://www.ato.gov.au/General/Online-services/Accessing-online-services-with-myGovID-and-RAM/
+  authorisation:
+    name: Relationship Authorisation Manager (RAM)
+    role: links a Digital ID to the organisation (by ABN) it acts for
+    url: https://info.authorisationmanager.gov.au/
+  digital_id_system: https://www.digitalidsystem.gov.au/what-is-digital-id
+  flow:
+  - Each user obtains their own Digital ID (myID) at Standard strength
+  - A principal authority links the organisation in RAM; authorised users and
+    administrators are then authorised against that organisation's ABN
+  - The entity nominates one Regulatory Reporting Administrator (RRA) per ABN via the
+    APRA Connect RRA nomination form; APRA administrators assign the initial RRA role
+  - The RRA assigns roles and permissions to all other users of that entity
+  - "At login: go to connect.apra.gov.au, choose Continue with Digital ID, select myID,
+    enter the myID email, confirm the four-digit code in the myID app, and consent to
+    the attribute release"
+  service_providers: >-
+    Third-party service providers submitting on an entity's behalf must be authorised
+    in RAM by that entity's principal authority or authorisation administrator —
+    against the entity's ABN, not their own.
+  environments:
+    production: https://connect.apra.gov.au
+    test: https://connect-test.apra.gov.au
+    note: Production and test are separate; there is no data transfer between them and
+      users must be enrolled in each environment independently.
+authorisation_model:
+  scheme: entity-scoped roles managed by the entity
+  roles:
+  - name: Regulatory Reporting Administrator (RRA)
+    note: The only role that can manage user access for an entity. One nominated per ABN.
+  - name: Corporate Profile User
+    note: Assigned to the initial RRA in the test environment alongside ad hoc return
+      permissions.
+  note: >-
+    APRA publishes no scope or permission reference (there is no OAuth surface), so
+    scopes/ is intentionally absent for this provider.
+access_monitoring:
+  quarterly_download_extract: >-
+    APRA sends each entity a quarterly email extract of APRA Connect file downloads —
+    dates, times and source IP addresses — so entities can validate that only
+    authorised systems accessed their data, with a follow-up process for usernames and
+    file names.
+  source: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-support-material
+schemes: []

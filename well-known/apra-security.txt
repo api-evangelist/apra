@@ -1,0 +1,4 @@
+Contact: https://bugcrowd.com/engagements/apra-vdp-pro
+Policy: https://www.apra.gov.au/security
+Preferred-Languages: en
+Canonical: https://www.apra.gov.au/.well-known/security.txt

@@ -1,0 +1,111 @@
+generated: '2026-07-25'
+method: searched
+source: live probes plus APRA's published information-security and technical-specification
+  pages
+note: >-
+  APRA publishes no API, so every API-shaped standard below is honestly false rather
+  than unassessed. The standards APRA does conform to are web/security and reporting
+  standards, and those are recorded with evidence.
+standards:
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: https://www.apra.gov.au/.well-known/security.txt returns 200 with Contact,
+    Policy, Preferred-Languages and Canonical fields
+- id: rss-2.0
+  conforms: true
+  evidence: https://www.apra.gov.au/rss.xml is a valid RSS 2.0 news and publications
+    feed
+- id: sitemaps-0.9
+  conforms: true
+  evidence: https://www.apra.gov.au/sitemap.xml is a sitemapindex (Drupal Simple XML
+    Sitemap), 2 pages / 3,451 URLs
+- id: xml-schema-xsd
+  conforms: true
+  evidence: 107 XSD files published across five APRA Connect taxonomy packs, explicitly
+    intended to enable XML validation and third-party software integration — see
+    data-model/apra-reporting-taxonomy.yml
+- id: xbrl
+  conforms: true
+  evidence: XBRL is an accepted APRA Connect submission format alongside manual entry,
+    XML and Excel
+- id: au-gov-digital-id-system
+  conforms: true
+  evidence: APRA Connect is integrated with the Australian Government Digital ID System
+    — myID as identity provider, Relationship Authorisation Manager (RAM) for the
+    entity relationship
+- id: au-gov-information-security-manual
+  conforms: true
+  evidence: >-
+    APRA engaged an independent party to conduct an Information Security Registered
+    Assessors Program (IRAP) assessment of APRA Connect against the Australian
+    Government Information Security Manual; vulnerability assessments and penetration
+    tests have also been conducted
+- id: irap-assessment
+  conforms: true
+  evidence: Published on the APRA Connect information security and technical specifications
+    page
+- id: cps-234-information-security
+  conforms: true
+  evidence: >-
+    APRA is the issuer of Prudential Standard CPS 234 Information Security and requires
+    reporting entities to comply with it, including protecting sensitive data in
+    non-production environments
+- id: hsts
+  conforms: true
+  evidence: www.apra.gov.au max-age=31557600; connect.apra.gov.au max-age=15552000 with
+    includeSubDomains (connect-test.apra.gov.au does not set HSTS on its redirect)
+- id: dnssec
+  conforms: true
+  evidence: apra.gov.au is DNSSEC signed (probe-domain-security 2026-07-25)
+- id: dmarc
+  conforms: true
+  evidence: apra.gov.au publishes DMARC with policy reject; SPF present
+- id: caa
+  conforms: false
+  evidence: no CAA records published for apra.gov.au
+- id: openapi
+  conforms: false
+  evidence: no OpenAPI/Swagger document on any APRA host; APRA's technical specifications
+    page lists the API technical specification as "to be provided when this functionality
+    is available"
+- id: oauth2
+  conforms: false
+  evidence: no OAuth authorization server metadata; /.well-known/oauth-authorization-server
+    is 404 on www and WAF-rejected HTML on connect
+- id: openid-connect
+  conforms: false
+  evidence: no OIDC discovery document is published by APRA; federated login is brokered
+    by the Australian Government Digital ID System, whose metadata APRA does not publish
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no API error surface exists
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook surface; the only push channel is the RSS
+    news feed
+- id: graphql
+  conforms: false
+  evidence: no /graphql surface
+- id: acord
+  conforms: false
+  evidence: no ACORD, AL3, ACORD XML or NGDS reference anywhere on apra.gov.au
+- id: consumer-data-right
+  conforms: false
+  evidence: >-
+    CDR is administered by the ACCC and Treasury with Data Standards Body standards;
+    APRA is not a CDR data holder or standards body, and the designated extension of
+    CDR to general insurance has been deferred
+compliance:
+  published: true
+  program: Australian Government assurance rather than commercial certification
+  claims:
+  - IRAP assessment against the Australian Government Information Security Manual
+  - Vulnerability assessment and penetration testing conducted
+  - Data encrypted in transit and at rest in both test and production
+  - Data hosted in APRA's Australian data centre; entity data remains in Australia
+  certifications: []
+  certifications_note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP certification is claimed — expected
+    for a Commonwealth statutory authority, which assures under the Australian
+    Government ISM/IRAP regime instead.
+  url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications

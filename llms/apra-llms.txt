@@ -1,0 +1,61 @@
+# APRA — Australian Prudential Regulation Authority
+
+> APRA is the Commonwealth statutory authority that prudentially supervises Australia's banks, credit unions, building societies, general insurers, life insurers, private health insurers, reinsurers and most of the superannuation industry. APRA publishes **no public API**: there is no developer portal, no OpenAPI/Swagger definition, no GraphQL or MCP endpoint, no webhooks and no public Postman collection as of 2026-07-25. APRA's own technical specifications page lists the "API technical specification" as *"to be provided when this functionality is available."* The machine-readable contract APRA does publish is a reporting **taxonomy** — 107 XSD schemas plus reporting-taxonomy and validation-rule workbooks across five industries — consumed by a browser-only lodgement portal, APRA Connect. Generated from the API Evangelist catalog entry for APRA; APRA does not publish an llms.txt (https://www.apra.gov.au/llms.txt returns 404).
+
+## Integration surface
+
+- [APRA Connect (production)](https://connect.apra.gov.au): Browser-only regulatory data-lodgement portal. Anonymous requests are rejected by an F5 WAF with an HTTP 200 "Request Rejected" page. Authentication is the Australian Government Digital ID System — myID for identity, Relationship Authorisation Manager (RAM) for the entity relationship.
+- [APRA Connect (test)](https://connect-test.apra.gov.au): Separate test environment. No data transfer to/from production; users must be enrolled independently.
+- [APRA Connect overview](https://www.apra.gov.au/apra-portals/apra-connect): Portal landing page.
+- [Accessing APRA Connect](https://www.apra.gov.au/apra-portals/apra-connect/accessing-apra-connect): The onboarding path — Digital ID, RAM authorisation, Regulatory Reporting Administrator nomination, role assignment.
+- [Information security and technical specifications](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications): Browser support, accepted submission formats (manual entry, XML, XBRL, Excel), 30 MB ad hoc upload limit, environment URLs, authentication, and the "API technical specification — to be provided" statement.
+- [RegTech access to APRA Connect test](https://www.apra.gov.au/apra-portals/apra-connect/regtech-access-apra-connect-test): RegTech providers request test-environment portal access by signed deed via dataanalytics@apra.gov.au. Portal access, not API access.
+
+## Machine-readable artefacts
+
+- [APRA Connect taxonomy artefacts](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts): Per-industry ZIP packs containing XSD schemas, reporting taxonomy workbooks and validation rule workbooks — ADI (May 2026), General Insurance (May 2026), Life Insurance (February 2026), Private Health Insurance (February 2026), Superannuation (June 2026).
+- [D2A validation and derivation rules](https://www.apra.gov.au/apra-portals/direct-apra/validation-and-derivation-rules): Legacy rule workbooks, refreshed two weeks before each quarter end.
+- [RSS news feed](https://www.apra.gov.au/rss.xml): RSS 2.0 publications feed — the only push channel APRA operates.
+- [security.txt](https://www.apra.gov.au/.well-known/security.txt): RFC 9116 (Contact, Policy, Preferred-Languages, Canonical).
+
+## Registers and statistics (no API, no bulk export)
+
+- [Registers index](https://www.apra.gov.au/registers): HTML tables only; no CSV, JSON or API export.
+- [General insurers](https://www.apra.gov.au/registers/list-general-insurance)
+- [Life insurers and friendly societies](https://www.apra.gov.au/registers/list-registered-life-insurers-and-friendly-societies)
+- [Private health insurers](https://www.apra.gov.au/registers/list-registered-private-health-insurers)
+- [Statistics](https://www.apra.gov.au/statistics): XLSX downloads plus embedded Power BI dashboards.
+- [Quarterly general insurance performance statistics](https://www.apra.gov.au/news-and-publications/quarterly-general-insurance-performance-statistics)
+- [Quarterly life insurance performance statistics](https://www.apra.gov.au/news-and-publications/quarterly-life-insurance-performance-statistics)
+- [Quarterly private health insurance performance statistics](https://www.apra.gov.au/news-and-publications/quarterly-private-health-insurance-performance-statistics)
+- [National Claims and Policies Database statistics](https://www.apra.gov.au/news-and-publications/national-claims-and-policies-database-statistics)
+
+## Standards and guidance
+
+- [Prudential standards and guidance](https://www.apra.gov.au/prudential-standards-and-guidance): The prudential standards APRA supervises against, including CPS 234 Information Security.
+- [APRA Connect release notes](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes): Dated platform and collection changes.
+- [APRA Connect support material](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-support-material): APRA Connect Guide, FAR reporting form instruction guides, FAQs.
+
+## Security
+
+- [Vulnerability disclosure policy](https://www.apra.gov.au/security): Report via the [APRA Bugcrowd engagement](https://bugcrowd.com/engagements/apra-vdp-pro). No monetary rewards; the program does not authorise testing against APRA systems.
+- [D2A decommission notice](https://www.apra.gov.au/news-and-publications/direct-apra-security-update-and-accelerated-decommission): The legacy Direct to APRA client was taken offline on 20 March 2026 after a penetration test found vulnerabilities; entities were told to uninstall it.
+
+## API Evangelist artifacts in this repo
+
+- apis.yml — the APIs.json catalog entry for APRA
+- review.yml — the API-surface review that established there is no public API
+- data-model/apra-reporting-taxonomy.yml — verified inventory of all five taxonomy packs (107 XSDs)
+- authentication/apra-authentication.yml — myID + RAM model; api_auth: none
+- changelog/apra-changelog.yml — structured APRA Connect release notes
+- lifecycle/apra-lifecycle.yml — D2A decommission, migration programme, no status page, no SLA
+- conformance/apra-conformance.yml — standards conformance with evidence
+- sandbox/apra-sandbox.yml — the APRA Connect test environment
+- security/ — domain security probe, vulnerability disclosure programme
+- well-known/ — security.txt plus the full /.well-known probe record
+
+## Contact
+
+- Data collection: dataanalytics@apra.gov.au
+- Service desk: support@apra.gov.au (+61 2 9210 3400, 9am–5pm AEST weekdays)
+- [Contact us](https://www.apra.gov.au/contact-us)

@@ -77,7 +77,9 @@ findings:
       note: DNS does not resolve
     - url: https://api.apra.gov.au
       status: 000
-      note: DNS does not resolve
+      note: 'Re-probed 2026-07-25 during enrichment: the name now HAS an A record
+        (124.47.155.12, same /24 as connect.apra.gov.au) but TCP/443 and TCP/80 both
+        time out — nothing is published on it.'
     - url: https://www.apra.gov.au/developers
       status: 404
     - url: https://www.apra.gov.au/api
@@ -170,6 +172,13 @@ findings:
     apiAuth: none — no API key, OAuth2 client-credentials, OAuth2 authorization-code
       or mTLS API scheme is published
     wellKnown:
+    - url: https://www.apra.gov.au/.well-known/security.txt
+      status: 200
+      parsed: true
+      note: 'Found during enrichment 2026-07-25 (missed in the first pass): a valid
+        RFC 9116 security.txt with Contact (Bugcrowd engagement), Policy
+        (apra.gov.au/security), Preferred-Languages and Canonical. Saved verbatim to
+        well-known/apra-security.txt.'
     - url: https://www.apra.gov.au/.well-known/openid-configuration
       status: 404
     - url: https://connect.apra.gov.au/.well-known/openid-configuration
@@ -288,6 +297,30 @@ sources:
   type: Data
   status: 200
   note: CKAN query returned count 0 — APRA has no publisher presence on data.gov.au.
+- url: https://www.apra.gov.au/.well-known/security.txt
+  type: SecurityTxt
+  status: 200
+  note: RFC 9116 security.txt (enrichment 2026-07-25). Contact = Bugcrowd engagement,
+    Policy = apra.gov.au/security.
+- url: https://www.apra.gov.au/security
+  type: Security
+  status: 200
+  note: APRA vulnerability disclosure program page — Bugcrowd, no monetary rewards,
+    testing not authorised.
+- url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes
+  type: ChangeLog
+  status: 200
+  note: Dated APRA Connect release notes back to the 2021 go-live; structured into
+    changelog/apra-changelog.yml.
+- url: https://www.apra.gov.au/apra-portals/apra-connect/accessing-apra-connect
+  type: GettingStarted
+  status: 200
+  note: Digital ID (myID) + RAM onboarding path and role model for APRA Connect.
+- url: https://www.apra.gov.au/news-and-publications/direct-apra-security-update-and-accelerated-decommission
+  type: Deprecation
+  status: 200
+  note: 27 March 2026 media release — legacy D2A client taken offline 20 March 2026
+    after a penetration test; migration to APRA Connect accelerated.
 actions:
   apisYmlCreated: true
   apisListed: 0

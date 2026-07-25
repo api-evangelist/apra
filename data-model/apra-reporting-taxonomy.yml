@@ -1,0 +1,220 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+docs: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+last_updated_upstream: '2026-06-04'
+note: >-
+  APRA publishes no OpenAPI, so there is no spec to derive an entity graph from. What
+  APRA does publish is a real machine-readable data model — the APRA Connect reporting
+  taxonomy: one XSD per collection group plus a reporting-taxonomy workbook per
+  reporting standard (schemas, elements, data types, enumerations, form layouts) and a
+  per-industry validation-rules workbook. This artifact is the verified inventory of
+  that corpus: every pack below was downloaded on 2026-07-25 and its contents listed,
+  so the counts and file names are observed, not claimed.
+model:
+  kind: XSD / XBRL reporting taxonomy
+  units: reporting collections (one per reporting standard, versioned individually)
+  identifier_convention: >-
+    Collections are named for their reporting standard — ARS (authorised
+    deposit-taking institutions), GRS (general insurance), LRS (life insurance and
+    friendly societies), HRS (private health insurance), SRS (superannuation) — with a
+    numeric form id and a version suffix, e.g. "APRA-GRS 320.0 Liability Roll
+    Forwards-V10". A ".G" suffix marks the group/consolidated variant of a collection.
+  xsd_naming: >-
+    XSD file names use the industry prefix plus an underscore-escaped short code,
+    e.g. GI_uL1_uLIABROLLFWDS.xsd, LI_uSTATFINPOS.xsd, SUP_uMEMAC.xsd. "_u" is the
+    escape APRA uses for an underscore in the generated name.
+  submission_formats: [manual entry, XML, XBRL, Excel]
+  ad_hoc_upload_limit: 30 MB
+  validation:
+    rules_workbook_per_pack: true
+    change_log_per_pack: true
+    change_log_sections: [Schemas, Amended validation rules, Rule restrictions, Release
+        notes]
+    legacy_d2a_rules:
+      mandatory: Data with mathematical errors, discrepancies or factual inconsistencies
+        — must be corrected before submission
+      confirmation: Data indicating reporting errors or requiring explanation — must
+        be corrected or explained
+      url: https://www.apra.gov.au/apra-portals/direct-apra/validation-and-derivation-rules
+  derivation_rules:
+    description: Formulae that automatically calculate attribute values from other
+      attributes
+    url: https://www.apra.gov.au/apra-portals/direct-apra/validation-and-derivation-rules
+packs:
+- industry: Authorised deposit-taking institutions (ADIs)
+  prefix: ARS
+  pack: APRA Connect ADI Taxonomy Artefacts May 2026
+  published: '2026-05-09'
+  url: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20ADI%20Taxonomy%20Artefacts%20May%202026.zip
+  size: 938.48 KB
+  verified: '2026-07-25'
+  files_total: 14
+  xsd_count: 6
+  workbook_count: 6
+  validation_rules_workbook: ADI Validation Rules May 2026.xlsx
+  change_log: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20-%20ADI%20Artefacts%20Change%20Log%20May%202026.xlsx
+  collections:
+  - ARS 110.0 Capital Adequacy (V22)
+  - ARS 112.0 Capital Adequacy - Standardised Approach to Credit Risk (V20)
+  - ARS 113.0 Capital Adequacy - Internal Ratings-based Approach to Credit Risk (V16)
+  - ARS 115.0 Operational Risk (V8)
+  - ARS 117.0 Repricing Analysis (V5)
+  - ARS 117.1 Interest Rate Risk in the Banking Book (V6)
+  schemas: [ADI_uCAPAD.xsd, ADI_uCRIRB.xsd, ADI_uCRSTD.xsd, ADI_uIRRBB.xsd, ADI_uOPRISK.xsd,
+    ADI_uREPRAN.xsd]
+- industry: General insurance
+  prefix: GRS
+  pack: APRA Connect GI Taxonomy Artefacts May 2026
+  published: '2026-05-09'
+  url: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20GI%20Taxonomy%20Artefacts%20May%202026.zip
+  size: 3.42 MB
+  verified: '2026-07-25'
+  files_total: 78
+  xsd_count: 38
+  workbook_count: 38
+  validation_rules_workbook: GI Validation Rules May 2026.xlsx
+  change_log: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20-%20GI%20Artefacts%20Change%20Log%20May%202026.xlsx
+  collections:
+  - GRS 110.0 / 110.0.G Prescribed Capital Amount
+  - GRS 111.0 / 111.0.G Adjustments and Exclusions
+  - GRS 112.0 / 112.0.G Determination of Capital Base
+  - GRS 114.0 / 114.0.G Asset Risk Charge
+  - GRS 114.1 / 114.1.G Assets by Counterparty Grade
+  - GRS 115.0 / 115.0.G Outstanding Claims Liabilities - Insurance Risk Charge
+  - GRS 115.1 / 115.1.G Premiums Liabilities - Insurance Risk Charge
+  - GRS 116.0 / 116.0.G Insurance Concentration Risk Charge
+  - GRS 117.0 / 117.0.G Asset Concentration Risk Charge
+  - GRS 118.0 / 118.0.G Operational Risk Charge
+  - GRS 300.0 / 300.0.G Statement of Financial Position
+  - GRS 302.0.G Statement of Financial Position by Region
+  - GRS 310.0 / 310.0.G Statement of Profit or Loss and Other Comprehensive Income
+  - GRS 311.0 / 311.0.G Statement of Profit or Loss and OCI by Product Group (and by
+    Region)
+  - GRS 320.0 / 320.0.G Liability Roll Forwards
+  - GRS 400.0 Statement of Risk by Country
+  - GRS 410.0 Movement in Outstanding Claims Liabilities
+  - GRS 420.0 Insurance Revenue and Incurred Claims by State and Territory of Australia
+  - GRS 440.0 Claims Development Table
+  - GRS 460.0 / 460.0.G Reinsurance Assets by Counterparty
+  - GRS 460.1 / 460.1.G Exposure Analysis by Reinsurance Counterparty
+  - GRS 600.0 Supplementary Capital Data - Premiums and Claims
+  playback_spreadsheets:
+  - GRS 114.0 Asset Risk Charge
+  - GRS 114.0.G Asset Risk Charge
+  - GRS 115.0.G Outstanding Claims Liabilities - Insurance Risk Charge
+  - GRS 115.1.G Premiums Liabilities - Insurance Risk Charge
+- industry: Life insurance and friendly societies
+  prefix: LRS
+  pack: APRA Connect LI Taxonomy Artefacts February 2026
+  published: '2026-02-24'
+  url: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20LI%20Taxonomy%20Artefacts%20February%202026.zip
+  size: 1.84 MB
+  verified: '2026-07-25'
+  files_total: 36
+  xsd_count: 17
+  workbook_count: 17
+  validation_rules_workbook: LI Validation Rules February 2026.xlsx
+  change_log: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20-%20LI%20Artefacts%20Change%20Log%20February%202026.xlsx
+  collections:
+  - LRS 110.0 Prescribed Capital Amount (V6)
+  - LRS 111.0 Adjustments and Exclusions (V7)
+  - LRS 112.0 Determination of Capital Base (V3)
+  - LRS 114.0 Asset Risk Charge (V8)
+  - LRS 114.5 Friendly Society Related Items (V7)
+  - LRS 115.0 Insurance Risk Charge (V7)
+  - LRS 117.0 Asset Concentration Risk Charge (V8)
+  - LRS 118.0 Operational Risk Charge (V8)
+  - LRS 200.0 Capital Adequacy Supplementary Information (V9)
+  - LRS 300.0 Statement of Financial Position (V10)
+  - LRS 310.0 Statement of Profit or Loss and Other Comprehensive Income (V10)
+  - LRS 311.0 Statement of Profit or Loss and OCI by Product Group (V9)
+  - LRS 320.0 Liability Roll Forwards (V11)
+  - LRS 340.0 Retained Profits and Policy Liabilities for Participating Business (V6)
+  - LRS 340.1 Retained Profits and Share Capital (V6)
+  - LRS 400.0 Statement of Policy Liabilities (V10)
+  - LRS 420.0 Assets Backing Policy Liabilities (V10)
+  playback_spreadsheets: [LRS 114.0 Asset Risk Charge, LRS 200.0 Capital Adequacy Supplementary
+      Information]
+- industry: Private health insurance
+  prefix: HRS
+  pack: APRA Connect PHI Taxonomy Artefacts February 2026
+  published: '2026-02-24'
+  url: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20PHI%20Taxonomy%20Artefacts%20February%202026.zip
+  size: 1.30 MB
+  verified: '2026-07-25'
+  files_total: 32
+  xsd_count: 15
+  workbook_count: 15
+  validation_rules_workbook: PHI Validation Rules February 2026.xlsx
+  change_log: https://www.apra.gov.au/system/files/2026-05/APRA%20Connect%20-%20PHI%20Artefacts%20Change%20Log%20February%202026.xlsx
+  collections:
+  - HRS 101.0 Regulatory Income Statement - Supplementary Information (V9)
+  - HRS 104.0 Forecasts and Targets (V6)
+  - HRS 109.0 Claims (V7)
+  - HRS 110.0 Prescribed Capital Amount (V8)
+  - HRS 111.0 Adjustments and Exclusions (V6)
+  - HRS 112.0 Determination of Capital Base (V2)
+  - HRS 112.3 Related Party Exposures (V3)
+  - HRS 114.0 Asset Risk Charge (V9)
+  - HRS 115.0 Insurance Risk Charge (V10)
+  - HRS 117.0 Asset Concentration Risk Charge (V8)
+  - HRS 118.0 Operational Risk Charge (V5)
+  - HRS 300.0 Statement of Financial Position (V8)
+  - HRS 310.0 Statement of Profit or Loss and Other Comprehensive Income (V7)
+  - HRS 320.0 Liability Roll Forwards (V10)
+  - HRS 605.0 Private Health Insurance Reform Data Collection (V12)
+  playback_spreadsheets: [HRS 114.0 Asset Risk Charge, HRS 115.0 Insurance Risk Charge]
+- industry: Superannuation
+  prefix: SRS
+  pack: APRA Connect Superannuation Taxonomy Artefacts June 2026
+  published: '2026-06-04'
+  url: https://www.apra.gov.au/system/files/2026-06/APRA%20Connect%20Superannuation%20Taxonomy%20Artefacts%20June%202026.zip
+  size: 3.34 MB
+  verified: '2026-07-25'
+  files_total: 64
+  xsd_count: 31
+  workbook_count: 31
+  validation_rules_workbook: Super Validation Rules June 2026.xlsx
+  change_log: https://www.apra.gov.au/system/files/2026-06/APRA%20Connect%20-%20Superannuation%20Taxonomy%20Change%20Log%20June%202026.xlsx
+  collections:
+  - SRS 251.0 Insurance Arrangements (V17) and Ad-hoc (V1)
+  - SRS 332.0 Expenses (V21)
+  - SRS 332.1 Investment and Transaction Fees and Costs (V5)
+  - SRS 340.0 RSE Licensee Financial Statements (V3)
+  - SRS 550.0 Asset Allocation Parts A-D
+  - SRS 551.0 Liquidity Parts A-C
+  - SRS 552.0 Securities Subject to Repurchase and Resale and Securities Lending and
+    Borrowing (V5)
+  - SRS 553.0 Investment Exposure Concentrations and Valuations Parts A-B
+  - SRS 604.0 RSE Licensee Profile (V6) and Ad-hoc (V4)
+  - SRS 605.0 RSE Structure (V22) and Parts B-C
+  - SRS 606.0 RSE Profile (V13)
+  - SRS 606.1 RSE Profile Fees And Costs Arrangements (V6)
+  - SRS 607.0 RSE Business Model (V6)
+  - SRS 611.0 Member Accounts (V9)
+  - SRS 705.0 Performance Components (V17)
+  - SRS 705.1 Performance Benchmark (V17)
+  - SRS 705.2 Investment Objectives (V5) and Investment Objectives External (V3)
+  - SRS 706.0 Fees and Costs (V17)
+  - SRS attestation (V10) and SRS attestation - Transitional (V1)
+totals:
+  packs: 5
+  collections_workbooks: 107
+  xsd_files: 107
+  verified_by: downloaded and listed each ZIP on 2026-07-25
+standards_posture:
+  acord: false
+  acord_note: >-
+    No ACORD, AL3, ACORD XML or NGDS reference exists anywhere in APRA's corpus. APRA
+    is a prudential supervisor collecting solvency, capital and performance returns,
+    not a policy/claims transaction hub, so its data standard is its own XSD/XBRL
+    reporting taxonomy.
+  xbrl: true
+  xsd: true
+  json_schema: false
+  openapi: false
+related:
+  reporting_standards: https://www.apra.gov.au/prudential-standards-and-guidance
+  release_notes: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes
+  guide: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-support-material

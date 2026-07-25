@@ -1,0 +1,111 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes
+docs: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes
+subject: APRA Connect (regulatory data-lodgement platform)
+note: >-
+  APRA publishes dated release notes for the APRA Connect system itself. There is no
+  API version to change, so the change surface is the reporting collections: schemas,
+  validation rules, enumerations and form layouts. Substantive change detail is
+  carried in the per-industry "Artefacts Change Log" spreadsheets on the taxonomy
+  artefacts page — see data-model/apra-reporting-taxonomy.yml.
+versioning:
+  scheme: dated-release
+  api_version: none
+  collection_versioning: >-
+    Each reporting collection is versioned individually inside the taxonomy artefacts
+    (e.g. "APRA-GRS 320.0 Liability Roll Forwards-V10"), and superseded versions are
+    replaced when a new artefact pack is published.
+  change_log_files: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+  cadence: >-
+    Irregular; releases observed roughly every 2–3 months. Legacy D2A validation and
+    derivation rules were refreshed two weeks before the end of each quarter.
+entries:
+- date: '2026-06-04'
+  title: Superannuation changes
+  breaking: false
+  highlights:
+  - Validation rule update in SRS 550.1
+  - New columns added to SRS 605.0
+- date: '2026-05-09'
+  title: User interface updates and minor ADI, Super and GI changes
+  breaking: false
+  highlights:
+  - Cross-industry — application look and feel updated
+  - ADI — validation rule update in ARS 117.1
+  - General insurance — holes restriction file updates to GRS 460.1 and GRS 460.1.G
+  - Superannuation — validation rule updates in SRF 551.1
+- date: '2026-03-25'
+  title: ARS 110.0 IRRBB RWA derived from ARS 117.1
+  breaking: false
+  highlights:
+  - ADI — new versions of ARS 110.0 and ARS 117.1 allocated so the IRRBB RWA value
+    in ARS 110.0 is calculated from values submitted in ARS 117.1
+- date: '2026-02-24'
+  title: Updates for ADI, Superannuation and Insurance
+  breaking: false
+  highlights:
+  - ADI — EFS collections migrating from D2A (test environment only)
+  - Superannuation — minor updates to existing data reporting
+  - Cross-insurance — validation rules added to GRS 300.0, GRS 300.0.G, GRS 302.0G,
+    GRS 310.0, GRS 310.0.G, GRS 311.0, GRS 311.0.G, GRS 320.0, GRS 320.0.G, HRS 310.0,
+    HRS 320.0, LRS 310.0, LRS 311.0 and LRS 320.0
+- date: '2025-11-18'
+  title: Updates for ADI, Superannuation and Private Health Insurance
+  breaking: false
+  highlights:
+  - ADI — updates to ARS 117.0 validations; market risk collections migrating from
+    D2A (test environment only)
+  - Superannuation — updates to existing and upcoming data reporting
+  - Private health insurance — minor updates to HRS 101.0 and HRS 115.0
+- date: '2025-08-20'
+  title: Updates for ADI, Superannuation and General Insurance
+  breaking: false
+  highlights:
+  - ADI — updates to ARS 117.0 validations
+  - Superannuation — fixes for SDT Phase 2 issues found in the test environment
+  - General insurance — updates to reinsurer enumerated lists
+- date: '2025-06-03'
+  title: Test environment updates for ADI and Superannuation
+  breaking: false
+  highlights:
+  - ADI — consequential changes to ARS 110.0 and ARS 117.1 from the IRRBB and liquidity
+    consultations
+  - Superannuation — taxonomy artefacts updated for Superannuation Data Transformation
+    Phase 2 final standards
+- date: '2025-01-14'
+  title: Updates to ARS 112.0
+  breaking: false
+  highlights:
+  - New schema published for ARS_112_0 with an updated HolesRestrictionsFile providing
+    new permitted combinations for validation
+- date: '2024-11-13'
+  title: Validation rules updated in various returns
+  breaking: false
+  highlights:
+  - Validation rule changes in ARS_110_0, ARS_113_0, SRS_332_0, SRS_550_0 and SRS_705_1
+- date: '2024-10-16'
+  title: FAR forms made available to Superannuation and Insurance entities
+  breaking: false
+  highlights:
+  - Financial Accountability Regime forms updated to support superannuation and insurance
+    submissions — Entity Profile, Register Accountable Person, Notification of Change
+    to an Accountable Person, Accountability Map, Breach by Accountable Person, Breach
+    by Entity
+- date: '2024-08-21'
+  title: New ADI collections ARS 117.0 and ARS 117.1, updates to ARS 112 and ARS 113
+  breaking: false
+  highlights:
+  - New taxonomy artefacts and test-environment collections for IRRBB reporting standards
+    ARS 117.0 (Repricing Analysis) and ARS 117.1 (IRRBB Capital Charge), effective
+    1 October 2025
+  - Read-only summary reports added to ARS 112 and ARS 113
+- date: '2024-05-29'
+  title: Superannuation collections updated and data items added to GRS 116.0.G
+  breaking: false
+  highlights:
+  - General insurance — items 4.1–4.8 and item 5 added to GRS 116.0.G
+  - Superannuation — validation rules, error messages and enumerations updated
+window: >-
+  Recent window only (2024-05 through 2026-06). Older entries back to the September
+  2021 go-live remain on the live release-notes page under the "2021-2025" accordion.

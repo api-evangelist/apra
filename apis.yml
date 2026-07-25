@@ -44,6 +44,73 @@ modified: '2026-07-25'
 specificationVersion: '0.19'
 apis: []
 common:
+- type: VulnerabilityDisclosure
+  url: security/apra-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.apra.gov.au/security
+  note: Published vulnerability disclosure policy; reports go to the APRA Bugcrowd
+    engagement. No monetary rewards and no testing authorisation.
+- type: DomainSecurity
+  url: security/apra-domain-security.yml
+- type: SecurityTxt
+  url: well-known/apra-security.txt
+- type: WellKnown
+  url: well-known/apra-well-known.yml
+- type: Authentication
+  url: authentication/apra-authentication.yml
+  note: Documents the APRA Connect authentication model (myID + RAM). api_auth is
+    none — APRA publishes no API auth scheme.
+- type: Conformance
+  url: conformance/apra-conformance.yml
+- type: Compliance
+  url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications
+  note: IRAP assessment against the Australian Government Information Security Manual,
+    penetration testing, encryption in transit and at rest, Australian data residency.
+    No commercial certifications (SOC 2 / ISO 27001) are claimed.
+- type: ChangeLog
+  url: changelog/apra-changelog.yml
+- type: ChangeLog
+  url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes
+  note: Dated APRA Connect release notes — the live source.
+- type: Lifecycle
+  url: lifecycle/apra-lifecycle.yml
+- type: Deprecation
+  url: https://www.apra.gov.au/news-and-publications/direct-apra-security-update-and-accelerated-decommission
+  note: Decommission notice for the legacy Direct to APRA (D2A) submission client,
+    taken offline 20 March 2026 with migration instructions to APRA Connect.
+- type: DataModel
+  url: data-model/apra-reporting-taxonomy.yml
+  note: Verified inventory of the APRA Connect reporting taxonomy — 107 XSD schemas
+    plus taxonomy and validation-rule workbooks across five industry packs.
+- type: Sandbox
+  url: sandbox/apra-sandbox.yml
+- type: LLMsTxt
+  url: llms/apra-llms.txt
+- type: Documentation
+  url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-support-material
+  note: APRA Connect Guide, FAR reporting form instruction guides, FAQs and webinar
+    recordings.
+- type: GettingStarted
+  url: https://www.apra.gov.au/apra-portals/apra-connect/accessing-apra-connect
+  note: Onboarding path — Digital ID (myID), RAM authorisation, RRA nomination, role
+    assignment.
+- type: Support
+  url: https://www.apra.gov.au/contact-us
+- type: Videos
+  url: https://www.apra.gov.au/apra-portals/apra-connect/videos-apra-connect
+- type: PrivacyPolicy
+  url: https://www.apra.gov.au/privacy
+- type: TermsOfService
+  url: https://www.apra.gov.au/disclaimer
+  note: Site disclaimer — the terms a user is deemed to accept by using apra.gov.au.
+    APRA publishes no separate terms of service.
+- type: License
+  url: https://www.apra.gov.au/copyright
+  note: Site material is licensed Creative Commons Attribution 4.0 International,
+    excluding the Commonwealth Coat of Arms, APRA/APRA Connect logos and third-party
+    material.
+- type: Accessibility
+  url: https://www.apra.gov.au/accessibility
 - type: Website
   url: https://www.apra.gov.au/
 - type: Blog

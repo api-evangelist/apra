@@ -1,0 +1,39 @@
+generated: '2026-07-25'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts (corporate site + APRA Connect
+  production/test + the unreachable api. name)
+hosts:
+- host: www.apra.gov.au
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 13 07:08:38 2026 GMT
+  hsts: true
+  hsts_max_age: 31557600
+- host: connect.apra.gov.au
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Feb 15 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 15552000
+  hsts_include_subdomains: true
+  note: APRA Connect production. F5 BIG-IP WAF answers anonymous requests with an HTTP
+    200 "Request Rejected" page. Highest negotiated protocol observed was TLSv1.2.
+- host: connect-test.apra.gov.au
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Feb 15 23:59:59 2027 GMT
+  hsts: false
+  note: APRA Connect test environment. Anonymous request returns HTTP/1.0 302 from
+    BigIP; no Strict-Transport-Security header observed on that redirect.
+- host: api.apra.gov.au
+  https: false
+  note: DNS A record 124.47.155.12 exists, but TCP/443 and TCP/80 both time out — no
+    service is published on this name as of 2026-07-25. Recorded because the earlier
+    review noted this name as non-resolving; it now resolves but does not answer.
+domains:
+- domain: apra.gov.au
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

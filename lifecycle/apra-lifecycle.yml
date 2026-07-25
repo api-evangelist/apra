@@ -1,0 +1,74 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.apra.gov.au/apra-portals/apra-connect
+note: >-
+  APRA ships no API, so there is no API version, no Sunset/Deprecation header support
+  and no SLA to record. What APRA does run a lifecycle for is its data-lodgement
+  channel and its reporting collections — and that lifecycle is documented, dated and
+  currently mid-migration. This artifact records that real lifecycle rather than an
+  API one.
+versioning:
+  scheme: dated-release
+  api_version: none
+  current: APRA Connect (production), APRA Connect test (parallel environment)
+  docs: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes
+  collection_versioning: >-
+    Individual reporting collections carry their own version suffix in the taxonomy
+    artefacts (for example "APRA-GRS 320.0 Liability Roll Forwards-V10"); a new
+    artefact pack supersedes the previous one for that industry.
+deprecation:
+  policy_url: https://www.apra.gov.au/news-and-publications/direct-apra-security-update-and-accelerated-decommission
+  sunset_header: false
+  deprecation_header: false
+  events:
+  - name: Direct to APRA (D2A) legacy submission client
+    status: decommissioned
+    date_offline: '2026-03-20'
+    announced: '2026-03-27'
+    reason: >-
+      Security vulnerabilities identified through a routine penetration test on
+      19 March 2026. APRA took the client offline for entity access the following day
+      and accelerated the migration of all data collections to APRA Connect.
+    replacement: APRA Connect (https://connect.apra.gov.au)
+    consumer_action: >-
+      Uninstall the D2A client (default install path C:\D2A); review internal system
+      and data security measures; contact dataanalytics@apra.gov.au for interim
+      secure submission instructions (XML or XBRL preferred) until the collection is
+      migrated.
+    url: https://www.apra.gov.au/news-and-publications/direct-apra-security-update-and-accelerated-decommission
+  migration_programme:
+    name: D2A to APRA Connect collection migration
+    status: in-progress
+    docs: https://www.apra.gov.au/apra-portals/apra-connect/migrating-d2a-collections-support-material
+    faq: https://www.apra.gov.au/frequently-asked-questions-d2a-apra-connect-migration
+    note: >-
+      Collections migrate industry by industry; each migration lands first in the
+      APRA Connect test environment and is announced in the release notes (for
+      example EFS collections in February 2026 and market risk collections in
+      November 2025, both test-environment first).
+  legacy_rules:
+    name: D2A validation and derivation rules
+    url: https://www.apra.gov.au/apra-portals/direct-apra/validation-and-derivation-rules
+    cadence: Updated two weeks before the end of each quarter (31 Mar / 30 Jun / 30
+      Sep / 31 Dec)
+    latest_published: '2025-07-14'
+status_page:
+  url: null
+  found: false
+  note: >-
+    No status/uptime page exists. Probed status.apra.gov.au (no DNS record) and found
+    no availability or scheduled-maintenance page in the 3,451-URL sitemap. Planned
+    outages and incidents are communicated by email to registered APRA Connect users
+    and, for system-level changes, through the release notes.
+sla:
+  url: null
+  found: false
+  note: >-
+    No published SLA or uptime target. Support is a service desk — support@apra.gov.au,
+    urgent issues +61 2 9210 3400, 9am–5pm AEST weekdays.
+support:
+  service_desk: support@apra.gov.au
+  data_collection: dataanalytics@apra.gov.au
+  phone: +61 2 9210 3400
+  hours: 9am–5pm AEST, weekdays
+deprecated_operations: []

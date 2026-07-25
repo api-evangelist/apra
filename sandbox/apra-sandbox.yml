@@ -1,0 +1,65 @@
+generated: '2026-07-25'
+method: searched
+source: https://www.apra.gov.au/apra-portals/apra-connect/accessing-apra-connect
+docs:
+- https://www.apra.gov.au/apra-portals/apra-connect/accessing-apra-connect
+- https://www.apra.gov.au/apra-portals/apra-connect/regtech-access-apra-connect-test
+note: >-
+  APRA runs a genuine, separately addressable test environment for APRA Connect. It is
+  a browser environment, not an API sandbox — there are no test keys, test tokens or
+  magic test values to capture, because there is no API. Access is granted to entities
+  and, for RegTechs, only under a signed deed.
+environments:
+- name: production
+  url: https://connect.apra.gov.au
+  purpose: Live lodgement of regulatory data under the Financial Sector (Collection
+    of Data) Act 2001
+- name: test
+  url: https://connect-test.apra.gov.au
+  purpose: Familiarisation, trialling data preparation, and testing new/upcoming
+    collections before they reach production
+separation:
+  data_transfer_between_environments: false
+  independent_user_enrolment: true
+  note: >-
+    The environments are fully separate — no data moves between them, and every user
+    must be set up in each environment independently (including a separately nominated
+    Regulatory Reporting Administrator).
+credentials:
+  test_keys: none
+  test_tokens: none
+  magic_values: none
+  auth: Same Australian Government Digital ID System path as production — myID
+    (Standard strength) plus a RAM authorisation against the organisation's ABN.
+access:
+  entities: Regulated entities are enrolled in both environments as part of onboarding.
+  regtech:
+    process: >-
+      RegTech providers request access to the APRA Connect test environment by emailing
+      dataanalytics@apra.gov.au; access is granted under a signed deed. The deed grants
+      PORTAL access to the test environment — there is no API access, API documentation
+      or API-based integration option.
+    url: https://www.apra.gov.au/apra-portals/apra-connect/regtech-access-apra-connect-test
+    contact: dataanalytics@apra.gov.au
+test_first_release_pattern: >-
+  New and migrating collections are consistently released to the test environment
+  first, then to production — for example EFS collections (February 2026) and market
+  risk collections (November 2025) were both flagged "Test Environment only" in the
+  release notes. See changelog/apra-changelog.yml.
+fixtures:
+  playback_spreadsheets:
+    description: >-
+      Transitional XLSX tools that show summaries and calculations derived from the
+      data items in selected priority returns, so entities can run data-quality checks
+      before uploading. Published for GRS 114.0, GRS 114.0.G, GRS 115.0.G, GRS 115.1.G,
+      LRS 114.0, LRS 200.0, HRS 114.0 and HRS 115.0.
+    url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+  validation_rules:
+    description: Per-industry validation rule workbooks shipped inside every taxonomy
+      pack, so submissions can be validated offline before upload.
+    url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+limits:
+  ad_hoc_upload_max: 30 MB
+  accepted_submission_formats: [manual entry, XML, XBRL, Excel]
+  supporting_document_formats: [.xls, .xlsx, .csv, .doc, .docx, .pdf, .ppt, .pptx, .jpeg,
+    .jpg, .png, .bmp, .tif, .gif, .zip]
