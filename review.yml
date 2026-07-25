@@ -1,0 +1,301 @@
+aid: apra
+name: APRA
+review:
+  question: Does APRA publish a public, self-serve developer portal or documented API
+    for insurance supervision, registers, or statistics?
+  answer: false
+  date: '2026-07-25'
+  reviewer: API Evangelist
+  homeMarket: Australia
+  tier: market-infrastructure
+  organizationType: prudential regulator (Commonwealth statutory authority)
+findings:
+  summary: |
+    APRA — the Australian Prudential Regulation Authority — publishes NO public
+    developer portal and NO API of any kind as of 2026-07-25. Every conventional
+    developer host was probed and none resolves: developer.apra.gov.au,
+    developers.apra.gov.au, docs.apra.gov.au and api.apra.gov.au all fail DNS
+    (curl exit / HTTP 000), and apra.gov.au/developers, /api, /developer,
+    /partners and /integrations all return HTTP 404. The only integration
+    surface is APRA Connect, the regulatory data-lodgement portal, which is a
+    browser application gated behind the Australian Government Digital ID System
+    (myID for identity plus Relationship Authorisation Manager for the
+    entity relationship). APRA's own APRA Connect information security and
+    technical specifications page settles the question in APRA's own words: the
+    API Technical Specification is listed as "to be provided when this
+    functionality is available" — machine-to-machine submission is a roadmap
+    item, not a shipped surface. The RegTech access page confirms the same:
+    RegTechs get test-environment PORTAL access by signed deed after emailing
+    dataanalytics@apra.gov.au, and the page makes no mention of API access,
+    API documentation, or API-based integration.
+
+    What APRA does publish machine-readably is a STANDARDS corpus, not an API.
+    The APRA Connect taxonomy artefacts page distributes per-industry reporting
+    taxonomy packages containing XSD schemas (explicitly "to enable XML
+    validation and third-party software integration"), reporting taxonomy
+    workbooks (schemas, elements, data types, enumerations, form layouts) and
+    validation rule spreadsheets — covering General Insurance (May 2026, 3.42 MB
+    ZIP), Private Health Insurance (February 2026, 1.30 MB ZIP) and Life
+    Insurance (February 2026, 1.84 MB ZIP), alongside ADI and Superannuation.
+    Accepted submission formats are manual entry, XML, XBRL and Excel. This
+    XSD/XBRL data model is the contract APRA governs against, and it is the
+    correct thing to record for a regulator in place of an OpenAPI.
+
+    Statistics and registers are equally API-free. The quarterly general, life
+    and private health insurance performance statistics ship as XLSX downloads
+    plus an embedded Power BI dashboard — no CSV API, no bulk endpoint. The
+    National Claims and Policies Database (professional indemnity and public and
+    product liability policy/claim data) is published the same way. The public
+    registers of authorised general insurers, registered life insurers and
+    friendly societies, and registered private health insurers are plain HTML
+    tables with per-entity condition PDFs and no bulk export. A CKAN query
+    against data.gov.au found no APRA publisher organisation and zero datasets
+    under an APRA organisation slug, so there is not even a third-party
+    machine-readable redistribution channel.
+
+    Market-seam context: Australia has the legal machinery for open insurance
+    and no live obligation. The Consumer Data Right opened banking and energy
+    and was designated to extend to general insurance, then deferred and
+    de-prioritised — so the CDR seam that made Australian banking legible stops
+    before insurance, and APRA, which is a prudential supervisor rather than a
+    CDR data-standards body, has no forcing function pushing it toward a public
+    API. Contrast the UK FCA, whose Financial Services Register API is real and
+    documented; APRA's equivalent register is an HTML page.
+  developerPortal:
+    url: ''
+    confirmed: false
+    classification: none — no developer portal exists in any form
+    probes:
+    - url: https://developer.apra.gov.au
+      status: 000
+      note: DNS does not resolve
+    - url: https://developers.apra.gov.au
+      status: 000
+      note: DNS does not resolve
+    - url: https://docs.apra.gov.au
+      status: 000
+      note: DNS does not resolve
+    - url: https://api.apra.gov.au
+      status: 000
+      note: DNS does not resolve
+    - url: https://www.apra.gov.au/developers
+      status: 404
+    - url: https://www.apra.gov.au/api
+      status: 404
+    - url: https://www.apra.gov.au/developer
+      status: 404
+    - url: https://www.apra.gov.au/partners
+      status: 404
+    - url: https://www.apra.gov.au/integrations
+      status: 404
+    - url: https://www.apra.gov.au/
+      status: 200
+      note: Public corporate/regulatory website (Drupal 11). No developer section.
+    - url: https://www.apra.gov.au/apra-portals/apra-connect
+      status: 200
+      note: APRA Connect landing page — describes a login-gated lodgement portal,
+        classified as (b) a partner/entity login wall, not a developer portal.
+    - url: https://connect.apra.gov.au
+      status: 200
+      note: F5 WAF returns an HTTP 200 "Request Rejected" HTML page to anonymous
+        clients. This is a login wall, NOT a live API surface.
+    - url: https://connect-test.apra.gov.au
+      status: 200
+      note: APRA Connect test environment; same deed-gated portal access.
+  openapi:
+    harvested: false
+    specsCount: 0
+    note: No OpenAPI, Swagger, RAML or API Blueprint definition is published anywhere
+      on apra.gov.au or connect.apra.gov.au. Every spec probe was checked and rejected.
+    probes:
+    - url: https://www.apra.gov.au/openapi.json
+      status: 404
+    - url: https://www.apra.gov.au/swagger.json
+      status: 404
+    - url: https://connect.apra.gov.au/openapi.json
+      status: 200
+      parsed: false
+      note: FALSE POSITIVE — body is the F5 WAF "Request Rejected" HTML page, not a
+        specification.
+    - url: https://connect.apra.gov.au/swagger.json
+      status: 200
+      parsed: false
+      note: FALSE POSITIVE — WAF rejection HTML.
+    - url: https://connect.apra.gov.au/api-docs
+      status: 200
+      parsed: false
+      note: FALSE POSITIVE — WAF rejection HTML.
+  acord:
+    posture: no ACORD reference found — APRA reports on its own XBRL/XSD taxonomy
+    detail: |
+      A site search of apra.gov.au for "ACORD" returns no matching results, and no
+      APRA Connect page, prudential standard, taxonomy artefact page or statistical
+      publication references ACORD, AL3, ACORD XML, NGDS or ACORD certification.
+      This is expected: APRA is a prudential regulator collecting solvency, capital
+      and performance returns, not a policy/claims transaction hub, so its data
+      standard is its own APRA Connect reporting taxonomy expressed as XSD and XBRL
+      rather than the insurance industry's ACORD messaging standards. IVANS, agency
+      download, Applied Epic and Vertafore AMS360 are US agency-management concerns
+      and are absent, as expected in the Australian market.
+    substituteStandard:
+      name: APRA Connect reporting taxonomy (XSD + XBRL data point model)
+      url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+      artifacts:
+      - Reporting Taxonomy workbooks (XLSX) — schemas, elements, data types, enumerations,
+        form layouts, validation rules
+      - Validation Rules spreadsheets (XLSX) — error and warning rules with business
+        descriptions
+      - XSD files — XML Schema Definition for validation and third-party software integration
+      - Playback spreadsheets (XLSX) — transition tooling for selected collections
+      insuranceCollections:
+      - General Insurance taxonomy artefacts (May 2026) — playback for GRS 114.0,
+        GRS 115.0.G, GRS 115.1.G
+      - Private Health Insurance taxonomy artefacts (February 2026) — playback for
+        HRS 114.0, HRS 115.0
+      - Life Insurance taxonomy artefacts (February 2026) — playback for LRS 114.0,
+        LRS 200.0
+  insuranceVerbs:
+    quote: false
+    bind: false
+    issue: false
+    fnol: false
+    note: None of the four insurance API verbs are exposed, and none would be expected.
+      APRA is a supervisor, not a carrier, broker or MGA — it never quotes, binds,
+      issues or takes first notice of loss. Its transaction is regulatory data lodgement,
+      and that is portal-only.
+  auth:
+    model: SAML/OIDC-style federated human SSO to a partner portal — Australian Government
+      Digital ID System (myID) for identity plus Relationship Authorisation Manager
+      (RAM) for the entity relationship
+    apiAuth: none — no API key, OAuth2 client-credentials, OAuth2 authorization-code
+      or mTLS API scheme is published
+    wellKnown:
+    - url: https://www.apra.gov.au/.well-known/openid-configuration
+      status: 404
+    - url: https://connect.apra.gov.au/.well-known/openid-configuration
+      status: 200
+      parsed: false
+      note: FALSE POSITIVE — WAF rejection HTML, not OIDC discovery metadata.
+    - url: https://connect.apra.gov.au/.well-known/oauth-authorization-server
+      status: 200
+      parsed: false
+      note: FALSE POSITIVE — WAF rejection HTML.
+  webhooks:
+    present: false
+    asyncapi: false
+    note: No event catalog, webhook documentation or AsyncAPI definition. The only
+      push mechanism APRA operates is an RSS 2.0 news feed at https://www.apra.gov.au/rss.xml
+      (confirmed HTTP 200, valid RSS 2.0 with dc namespace), which is a publications
+      feed, not an event API.
+  postman:
+    present: false
+    note: No public Postman collection or workspace found.
+  graphql:
+    present: false
+    note: No /graphql surface.
+  grpc:
+    present: false
+  openData:
+    dataGovAu: false
+    note: CKAN package_search against data.gov.au for organization:australian-prudential-regulation-authority
+      returned count 0, and organization_show returned the site 404 page. APRA does
+      not publish through the national open data portal.
+  transports:
+  - protocol: HTTPS (browser)
+    scheme: https
+    baseURL: https://connect.apra.gov.au
+    documented: true
+    note: APRA Connect production lodgement portal. Human browser access only, behind
+      myID + RAM. Anonymous requests are rejected by an F5 WAF.
+  - protocol: HTTPS (browser)
+    scheme: https
+    baseURL: https://connect-test.apra.gov.au
+    documented: true
+    note: APRA Connect test environment; RegTech access by signed deed only.
+  - protocol: File transfer (XML / XBRL / Excel upload)
+    scheme: https
+    documented: true
+    note: Submission formats are manual entry, XML, XBRL and Excel, uploaded through
+      the portal. 30 MB maximum for ad hoc uploads. This is the real integration
+      transport in place of an API.
+  - protocol: RSS
+    scheme: https
+    baseURL: https://www.apra.gov.au/rss.xml
+    documented: true
+    note: RSS 2.0 news and publications feed. Confirmed live.
+  - protocol: REST
+    documented: false
+    note: No REST API is published. APRA's own technical specifications page lists the
+      API Technical Specification as "to be provided when this functionality is
+      available."
+  - protocol: SOAP
+    documented: false
+  - protocol: GraphQL
+    documented: false
+  - protocol: WebSocket
+    documented: false
+sources:
+- url: https://www.apra.gov.au/
+  type: Website
+  status: 200
+  note: Public regulatory website. No developer surface.
+- url: https://www.apra.gov.au/apra-portals/apra-connect
+  type: Portal
+  status: 200
+  note: APRA Connect overview — the data collection portal for entities lodging under
+    the Financial Sector (Collection of Data) Act 2001.
+- url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications
+  type: TechnicalSpecification
+  status: 200
+  note: Source of the "API Technical Specification — to be provided when this functionality
+    is available" statement; documents myID + RAM auth, XML/XBRL/Excel formats, 30 MB
+    upload limit, and the production/test endpoints.
+- url: https://www.apra.gov.au/apra-portals/apra-connect/regtech-access-apra-connect-test
+  type: Documentation
+  status: 200
+  note: RegTech test-environment access is portal access by signed deed; no API access,
+    documentation or integration option is mentioned.
+- url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+  type: Schema
+  status: 200
+  note: Per-industry XSD, reporting taxonomy and validation rule downloads, including
+    General Insurance, Private Health Insurance and Life Insurance.
+- url: https://www.apra.gov.au/statistics
+  type: Data
+  status: 200
+  note: Statistical publication index; insurance publications are XLSX plus Power BI.
+- url: https://www.apra.gov.au/news-and-publications/quarterly-general-insurance-performance-statistics
+  type: Data
+  status: 200
+  note: XLSX database plus XLSX specifications file and a Power BI dashboard. No API
+    or bulk endpoint mentioned.
+- url: https://www.apra.gov.au/registers/list-general-insurance
+  type: Registry
+  status: 200
+  note: Public register of APRA-licensed general insurers, HTML tables only, no bulk
+    export.
+- url: https://www.apra.gov.au/registers/list-registered-life-insurers-and-friendly-societies
+  type: Registry
+  status: 200
+- url: https://www.apra.gov.au/registers/list-registered-private-health-insurers
+  type: Registry
+  status: 200
+- url: https://www.apra.gov.au/rss.xml
+  type: BlogRSS
+  status: 200
+  note: Valid RSS 2.0 feed of APRA news and publications.
+- url: https://data.gov.au/data/api/3/action/package_search?q=organization:australian-prudential-regulation-authority
+  type: Data
+  status: 200
+  note: CKAN query returned count 0 — APRA has no publisher presence on data.gov.au.
+actions:
+  apisYmlCreated: true
+  apisListed: 0
+  openapiDirectory: omitted — no real specification was found to save
+  reason: |
+    APRA is correctly recorded as a documentation-and-standards-first market
+    body with an empty apis[] array. Recording "no public API surface;
+    entity-gated lodgement portal only; reporting taxonomy published as XSD/XBRL
+    rather than ACORD" is the accurate finding, and inventing an API family or
+    classifying the myID/RAM login wall as a developer portal would have been
+    fabrication.

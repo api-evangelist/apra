@@ -1,0 +1,104 @@
+aid: apra
+url: https://raw.githubusercontent.com/api-evangelist/apra/refs/heads/main/apis.yml
+name: APRA
+kind: company
+description: The Australian Prudential Regulation Authority (APRA) is the Commonwealth
+  statutory authority that prudentially supervises Australia's banks, credit unions,
+  building societies, general insurers, life insurers, private health insurers, reinsurers
+  and most of the superannuation industry, protecting depositors, policyholders and
+  fund members under the Financial Sector (Collection of Data) Act 2001 and the Insurance
+  Act 1973. Across insurance it authorises and registers general insurers, life insurers
+  and friendly societies, and private health insurers; publishes prudential standards
+  and practice guides; maintains public registers of authorised institutions; and
+  runs the quarterly general, life and private health insurance performance statistics
+  plus the National Claims and Policies Database. Its API posture is honestly none
+  as of July 2026 — APRA operates no developer portal, publishes no OpenAPI or Swagger
+  definition, and offers no self-serve API. Regulated entities lodge data through APRA
+  Connect (connect.apra.gov.au), a browser-only portal gated behind the Australian
+  Government Digital ID System (myID plus Relationship Authorisation Manager); APRA's
+  own technical specification page lists the API Technical Specification as "to be
+  provided when this functionality is available," so machine-to-machine submission
+  remains a roadmap item and not a shipped surface. What APRA does publish machine-readably
+  is a standards corpus rather than an API — per-industry APRA Connect taxonomy artefacts
+  (XSD schemas, reporting taxonomy and validation rule workbooks) for General Insurance,
+  Private Health Insurance and Life Insurance — while statistics ship as XLSX and Power
+  BI, and the public insurer registers are HTML tables with no bulk export. No ACORD,
+  AL3 or NGDS reference appears anywhere on apra.gov.au; APRA's reporting data model
+  is its own XBRL/XSD taxonomy, not the insurance industry's ACORD standards.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- Australia
+- Regulator
+- Prudential Regulation
+- General Insurance
+- Life Insurance
+- Private Health Insurance
+- Regulatory Reporting
+- Market Infrastructure
+- Risk Data
+- Superannuation
+- Banking
+created: '2026-07-25'
+modified: '2026-07-25'
+specificationVersion: '0.19'
+apis: []
+common:
+- type: Website
+  url: https://www.apra.gov.au/
+- type: Blog
+  url: https://www.apra.gov.au/news-and-publications
+- type: BlogRSS
+  url: https://www.apra.gov.au/rss.xml
+- type: Portal
+  url: https://www.apra.gov.au/apra-portals/apra-connect
+  note: APRA Connect — regulatory data lodgement portal for supervised entities. Login-gated
+    via the Australian Government Digital ID System (myID + RAM). Not a developer portal.
+- type: Application
+  url: https://connect.apra.gov.au
+  note: APRA Connect production. Unauthenticated requests are rejected by the WAF.
+- type: Sandbox
+  url: https://connect-test.apra.gov.au
+  note: APRA Connect test environment. RegTech access is granted only by signed deed
+    after emailing dataanalytics@apra.gov.au — no API is offered, portal access only.
+- type: TechnicalSpecification
+  url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications
+  note: States "API Technical Specification — to be provided when this functionality
+    is available" as of 2026-07-25.
+- type: Schema
+  url: https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts
+  note: Per-industry reporting taxonomy artefacts — XSD schemas, taxonomy workbooks
+    and validation rules for General Insurance, Private Health Insurance, Life Insurance,
+    ADI and Superannuation. The closest thing APRA publishes to a machine-readable
+    contract.
+- type: Standards
+  url: https://www.apra.gov.au/prudential-standards-and-guidance
+- type: Registry
+  url: https://www.apra.gov.au/registers
+  note: Public registers of APRA-authorised institutions. HTML tables only; no CSV,
+    JSON or API export.
+- type: Registry
+  url: https://www.apra.gov.au/registers/list-general-insurance
+- type: Registry
+  url: https://www.apra.gov.au/registers/list-registered-life-insurers-and-friendly-societies
+- type: Registry
+  url: https://www.apra.gov.au/registers/list-registered-private-health-insurers
+- type: Data
+  url: https://www.apra.gov.au/statistics
+  note: Statistical publications distributed as XLSX downloads plus embedded Power
+    BI dashboards. No API, no bulk data endpoint.
+- type: Data
+  url: https://www.apra.gov.au/news-and-publications/quarterly-general-insurance-performance-statistics
+- type: Data
+  url: https://www.apra.gov.au/news-and-publications/quarterly-life-insurance-performance-statistics
+- type: Data
+  url: https://www.apra.gov.au/news-and-publications/quarterly-private-health-insurance-performance-statistics
+- type: Data
+  url: https://www.apra.gov.au/news-and-publications/national-claims-and-policies-database-statistics
+- type: LinkedIn
+  url: https://www.linkedin.com/company/apra
+- type: Contact
+  url: mailto:dataanalytics@apra.gov.au
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
