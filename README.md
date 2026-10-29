@@ -1,4 +1,4 @@
-# APRA (apra)
+# APRA
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,66 +64,90 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-The Australian Prudential Regulation Authority (APRA) is the Commonwealth statutory authority that prudentially supervises Australia's banks, credit unions, building societies, general insurers, life insurers, private health insurers, reinsurers and most of the superannuation industry, protecting depositors, policyholders and fund members under the Financial Sector (Collection of Data) Act 2001 and the Insurance Act 1973. Across insurance it authorises and registers general insurers, life insurers and friendly societies, and private health insurers; publishes prudential standards and practice guides; maintains public registers of authorised institutions; and runs the quarterly general, life and private health insurance performance statistics plus the National Claims and Policies Database.
+The Australian Prudential Regulation Authority (APRA) is the Commonwealth statutory authority that prudentially supervises Australia's banks, credit unions, building societies, general insurers, life insurers, private health insurers, reinsurers and most of the superannuation industry, protecting depositors, policyholders and fund members under the Financial Sector (Collection of Data) Act 2001 and the Insurance Act 1973. Across insurance it authorises and registers general insurers, life insurers and friendly societies, and private health insurers; publishes prudential standards and practice guides; maintains public registers of authorised institutions; and runs the quarterly general, life and private health insurance performance statistics plus the National Claims and Policies Database. Its API posture is honestly none as of July 2026 — APRA operates no developer portal, publishes no OpenAPI or Swagger definition, and offers no self-serve API. Regulated entities lodge data through APRA Connect (connect.apra.gov.au), a browser-only portal gated behind the Australian Government Digital ID System (myID plus Relationship Authorisation Manager); APRA's own technical specification page lists the API Technical Specification as "to be provided when this functionality is available," so machine-to-machine submission remains a roadmap item and not a shipped surface. What APRA does publish machine-readably is a standards corpus rather than an API — per-industry APRA Connect taxonomy artefacts (XSD schemas, reporting taxonomy and validation rule workbooks) for General Insurance, Private Health Insurance and Life Insurance — while statistics ship as XLSX and Power BI, and the public insurer registers are HTML tables with no bulk export. No ACORD, AL3 or NGDS reference appears anywhere on apra.gov.au; APRA's reporting data model is its own XBRL/XSD taxonomy, not the insurance industry's ACORD standards.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/apra/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apra/refs/heads/main/apis.yml)
+**Areas:** Insurance · Australia · Regulator · Prudential Regulation · General Insurance · Life Insurance · Private Health Insurance · Regulatory Reporting · Market Infrastructure · Risk Data · Superannuation · Banking
 
-## Tags
+## APRA on APIs.io
 
-- Insurance
-- Australia
-- Regulator
-- Prudential Regulation
-- General Insurance
-- Life Insurance
-- Private Health Insurance
-- Regulatory Reporting
-- Market Infrastructure
-- Risk Data
-- Superannuation
-- Banking
+Everything profiled for APRA is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apra/](https://apis.io/providers/apra/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-25
-- **Modified:** 2026-07-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Security (3)
 
-APRA publishes **no public API**. As of 25 July 2026 there is no developer portal, no OpenAPI or Swagger definition, no API key or OAuth scheme, no webhooks or AsyncAPI, no public Postman collection, and no GraphQL endpoint. Every conventional developer host was probed and none resolves — `developer.apra.gov.au`, `developers.apra.gov.au`, `docs.apra.gov.au` and `api.apra.gov.au` all fail DNS, and `/developers`, `/api`, `/developer`, `/partners` and `/integrations` on `apra.gov.au` all return HTTP 404.
+Authentication, trust centre, and vulnerability disclosure.
 
-The only integration surface is **APRA Connect**, the regulatory data-lodgement portal at [connect.apra.gov.au](https://connect.apra.gov.au), a browser application gated behind the Australian Government Digital ID System (myID for identity plus Relationship Authorisation Manager for the entity relationship). APRA's own [information security and technical specifications](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications) page settles it: the API Technical Specification is listed as *"to be provided when this functionality is available."* RegTech providers can request the [test environment](https://www.apra.gov.au/apra-portals/apra-connect/regtech-access-apra-connect-test) by signed deed — but that grants portal access, not API access.
+- [Apra Authentication](https://apis.io/security/apra/apra-authentication/)
+- [Apra Domain Security](https://apis.io/security/apra/apra-domain-security/)
+- [Apra Vulnerability Disclosure](https://apis.io/security/apra/apra-vulnerability-disclosure/)
 
-What APRA does publish machine-readably is a **standards corpus, not an API**: the [APRA Connect taxonomy artefacts](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-taxonomy-artefacts) — XSD schemas explicitly intended for third-party software integration, reporting taxonomy workbooks, and validation rule spreadsheets — published per industry, including General Insurance (May 2026), Private Health Insurance (February 2026) and Life Insurance (February 2026). Accepted submission formats are manual entry, XML, XBRL and Excel.
+## Where to find this API
 
-**ACORD posture:** no ACORD reference found. A site search of apra.gov.au for ACORD returns nothing, and neither AL3, ACORD XML nor NGDS appears in any prudential standard, taxonomy artefact or statistical publication. APRA reports against its own XBRL/XSD data model rather than the insurance industry's ACORD messaging standards — expected for a prudential supervisor collecting solvency, capital and performance returns rather than policy and claims transactions.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-**Quote / bind / issue / FNOL:** none, and none expected. APRA is a supervisor, not a carrier, broker or MGA.
+- [Website](https://www.apra.gov.au/)
+- [Documentation](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-support-material)
+- [Getting started](https://www.apra.gov.au/apra-portals/apra-connect/accessing-apra-connect)
+- [Support](https://www.apra.gov.au/contact-us)
+- [Changelog](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-release-notes)
+- [Blog](https://www.apra.gov.au/news-and-publications)
+- [Security](https://www.apra.gov.au/security)
+- [Compliance](https://www.apra.gov.au/apra-portals/apra-connect/apra-connect-information-security-and-technical-specifications)
+- [Terms of service](https://www.apra.gov.au/disclaimer)
+- [Privacy policy](https://www.apra.gov.au/privacy)
 
-## Market context
+## API Evangelist rating
 
-Australia has the legal machinery for open insurance and no live obligation. The Consumer Data Right opened banking and energy and was designated to extend to general insurance, then deferred and de-prioritised — so the CDR seam that made Australian banking legible stops before insurance. APRA is a prudential supervisor rather than a CDR data-standards body, and nothing pushes it toward a public API. Contrast the UK, where the FCA Financial Services Register API is real and documented; APRA's equivalent registers are HTML tables with no bulk export.
+**Kin Score 30.9** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Registers and data
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 53.6 |
+| Access clarity | 28.9 |
 
-- [Registers index](https://www.apra.gov.au/registers) — HTML only, no CSV/JSON/API export
-- [List of general insurers](https://www.apra.gov.au/registers/list-general-insurance)
-- [List of registered life insurers and friendly societies](https://www.apra.gov.au/registers/list-registered-life-insurers-and-friendly-societies)
-- [List of registered private health insurers](https://www.apra.gov.au/registers/list-registered-private-health-insurers)
-- [Statistical publications](https://www.apra.gov.au/statistics) — XLSX downloads plus Power BI dashboards
-- [Quarterly general insurance performance statistics](https://www.apra.gov.au/news-and-publications/quarterly-general-insurance-performance-statistics)
-- [Quarterly life insurance performance statistics](https://www.apra.gov.au/news-and-publications/quarterly-life-insurance-performance-statistics)
-- [Quarterly private health insurance performance statistics](https://www.apra.gov.au/news-and-publications/quarterly-private-health-insurance-performance-statistics)
-- [National Claims and Policies Database statistics](https://www.apra.gov.au/news-and-publications/national-claims-and-policies-database-statistics)
+**Agent readiness 2.5** — human-only
 
-APRA has no publisher presence on data.gov.au — a CKAN query for an APRA organisation returned zero datasets.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-## Links
+**Regulatory alignment 31.6** — Insurance
 
-- **Website:** [https://www.apra.gov.au/](https://www.apra.gov.au/)
-- **News and publications:** [https://www.apra.gov.au/news-and-publications](https://www.apra.gov.au/news-and-publications)
-- **RSS:** [https://www.apra.gov.au/rss.xml](https://www.apra.gov.au/rss.xml)
-- **Prudential standards and guidance:** [https://www.apra.gov.au/prudential-standards-and-guidance](https://www.apra.gov.au/prudential-standards-and-guidance)
-- **APRA Connect:** [https://www.apra.gov.au/apra-portals/apra-connect](https://www.apra.gov.au/apra-portals/apra-connect)
-- **LinkedIn:** [https://www.linkedin.com/company/apra](https://www.linkedin.com/company/apra)
-- **Data enquiries:** dataanalytics@apra.gov.au
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apra/](https://apis.io/providers/apra/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for APRA: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apra/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
